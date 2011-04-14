@@ -112,17 +112,8 @@ def main():
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument('-c', '--command')
-    parser.add_argument('-h', '--help')
+    parser.add_argument('-c', '--command', help = "command to execute")
     args = parser.parse_args()
-    if args.help != None:
-        print "Execute a command repeatedly"
-        print "Syntax: pycycle.py -c <my_command>"
-        print "Keys: q - reduce cycle pause by 5 seconds"
-        print "Keys: w - increase cycle pause by 5 seconds"
-        print "Keys: space - pause cycle (space resumes)"
-        print "Keys: escape - quit cycle"
-        exit()
     if args.command != None:
         main()
     else:

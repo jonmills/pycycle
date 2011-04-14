@@ -5,6 +5,7 @@ import sys
 import subprocess
 import time
 from threading import Thread
+import argparse
 
 sleeptime = 10
 runthread = True
@@ -78,6 +79,8 @@ class KBPoller(Thread):
 
 def main():
     KBPoller().start()
+    
+    runthread = True
 
     try:
         while(runthread):
@@ -89,7 +92,7 @@ def main():
                 print
                 print "*** Running command ***"
                 print
-                subprocess.call([command])
+                subprocess.call([args.command])
                 if not pause:
                     print
                     print "*** Waiting %d seconds ***" % (sleeptime)
@@ -108,5 +111,19 @@ def main():
         runthread = False
 
 if __name__ == "__main__":
-    main()
-
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-c', '--command')
+    parser.add_argument('-h', '--help')
+    args = parser.parse_args()
+    if args.help != None:
+        print "Execute a command repeatedly"
+        print "Syntax: pycycle.py -c <my_command>"
+        print "Keys: q - reduce cycle pause by 5 seconds"
+        print "Keys: w - increase cycle pause by 5 seconds"
+        print "Keys: space - pause cycle (space resumes)"
+        print "Keys: escape - quit cycle"
+        exit()
+    if args.command != None:
+        main()
+    else:
+        print "No -c attribute passed on command line."

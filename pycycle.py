@@ -93,19 +93,22 @@ def main():
                 print "*** Running command ***"
                 print
                 subprocess.call([args.command])
-                if not pause:
-                    print
-                    print "*** Waiting %d seconds ***" % (sleeptime)
-                    print
-                    start_time = time.time()
-                    while ((start_time + sleeptime) > time.time()):
-                        time.sleep(5)
+                if runthread:
+                    if not pause:
+                        print
+                        print "*** Waiting %d seconds ***" % (sleeptime)
+                        print
+                        start_time = time.time()
+                        while ((start_time + sleeptime) > time.time()):
+                            time.sleep(5)
+                    else:
+                        print
+                        print "*** PAUSED ***"
+                        print
                 else:
-                    print
-                    print "*** PAUSED ***"
-                    print
-            #if runthread:
-            #    time.sleep(10)
+                    print "*** Quitting ***"
+                    exit()
+                    
     except KeyboardInterrupt:
         print "Keyboard interrupt"
         runthread = False

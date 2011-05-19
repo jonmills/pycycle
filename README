@@ -2,7 +2,7 @@ pycycle is a script which allows you to run a command repeatedly,
 while allowing you to easily adjust the delay between runs, or to pause
 the execution at any time.
 
-I use if you running unit-tests in a loop while I'm developing code.
+I use it for running unit-tests in a loop while I'm developing code.
 I usually keep it running on my second screen so that it's obvious
 if I've broken something.
 
